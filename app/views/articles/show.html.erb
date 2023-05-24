@@ -1,0 +1,46 @@
+<div class="large-container center-block">
+    <h1><%= @article.title %></h1>
+    <div>
+        <p>Escrito por: <strong><%= @article.user.email %></strong> </p>
+    </div>
+    <div>
+        <%= @article.content %>
+    </div>
+
+    <div class="margin-top">
+        <p class="label">Tags</p>
+
+        <% @article.categories.each do |category| %>
+            <span class="badge badge-pill padding" style="background-color:<%= category.color %>">
+                <%= link_to category.title, category, class: "text-white" %>
+            </span>
+        <% end %>
+
+    </div>
+
+    <%= link_to "EDITAR", edit_article_path, class: "link" %>
+
+    <div>
+        <%= link_to "ELIMINAR ARTICULO", @article, method: :delete %>
+    </div>
+
+
+    <div>
+        <h2>Agregar Comentario</h2>
+        <%= form_with(model: [ @article, Comment.new ], local: true) do |form| %>
+            <%= form.text_area :text, placeholder: 'Escribe tu comentario' %>
+            <%= form.submit 'Enviar comentario' %>
+        <% end %>
+    </div>
+
+    <div>
+        <h2>Comentarios</h2>
+        <% @article.comments.each do |comment| %>
+        <div>
+            <p>Correo del usuario: <%= comment.user.email %></p>
+            <p>Fecha: <%= comment.created_at %></p>
+            <p><%= comment.text %></p>
+        </div>
+        <% end %>
+    </div>
+</div>
