@@ -1,7 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  before_create :set_default_avatar
+
+  ROLES = {
+    admin: 'Admin',
+    editor: 'Editor',
+    user: 'Usuario'
+  }
+
+  before_create :set_default_avatar, :set_default_role
 
 
   devise :database_authenticatable, :registerable,
@@ -36,12 +43,21 @@ class User < ApplicationRecord
     end
   end
 
+  def admin?
+    role == 'Admin'
+  end
+
   private
 
   def delete_comments
     comments.destroy_all
   end
+
   def update_article_author
     articles.update_all(user_id: "elpepe")
+  end
+
+  def set_default_role
+    self.role = "Usuario"
   end
 end

@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
 
-    if @comment.user == current_user
+    if @comment.user == current_user || current_user.admin?
       @comment.destroy
       redirect_to @article, notice: 'El comentario se eliminó exitosamente.'
     else

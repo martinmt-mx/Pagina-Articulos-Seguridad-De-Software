@@ -17,12 +17,15 @@
         <% end %>
 
     </div>
+    <% if current_user.role != 'Usuario' %>
+        <div>
+            <%= link_to "EDITAR", edit_article_path, class: "link" %>
+            <%= link_to "ELIMINAR ARTICULO", @article, method: :delete %>
+        </div>
+    <% end %>
 
-    <%= link_to "EDITAR", edit_article_path, class: "link" %>
 
-    <div>
-        <%= link_to "ELIMINAR ARTICULO", @article, method: :delete %>
-    </div>
+
 
 
     <div>
@@ -44,7 +47,7 @@
             <p>Publicado: <%= comment.created_at.strftime("%d/%m/%Y") %></p>
             <p><%= comment.text %></p>
 
-            <% if current_user == comment.user %>
+            <% if current_user == comment.user || current_user.role == 'Admin'%>
                 <%= button_to "Eliminar comentario", article_comment_path(@article, comment), method: :delete, data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
             <% end %>
         </div>

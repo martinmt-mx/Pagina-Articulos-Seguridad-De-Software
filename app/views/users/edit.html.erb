@@ -21,6 +21,8 @@
     </div>
 
     <%= link_to 'Mis Comentarios', my_comments_user_path(current_user) %>
-    <%= link_to 'Mis Artículos', my_articles_user_path(current_user) %>
+    <% if current_user.role != 'Usuario' %>
+        <%= link_to 'Mis Artículos', my_articles_user_path(current_user) %>
+    <% end %>
 
 </div>

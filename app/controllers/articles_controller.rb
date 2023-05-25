@@ -10,14 +10,14 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless @article.user == current_user
+    unless @article.user == current_user || current_user.admin?
       redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
     end
     @categories = Category.all
   end
 
   def update
-    unless @article.user == current_user
+    unless @article.user == current_user || current_user.admin?
       redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
       return
     end
@@ -27,8 +27,12 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
-    @categories = Category.all
+    if current_user.role == 'Usuario'
+      redirect_to articles_path, alert: 'No tienes permisos para crear nuevos artículos.'
+    else
+      @article = Article.new
+      @categories = Category.all
+    end
   end
 
   def create
@@ -38,7 +42,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    unless @article.user == current_user
+    unless @article.user == current_user || current_user.admin?
       redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
       return
     end

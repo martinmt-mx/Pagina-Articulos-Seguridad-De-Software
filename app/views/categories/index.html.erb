@@ -17,9 +17,11 @@
         <td><%= category.title %></td>
         <td><%= category.color %></td>
         <% if user_signed_in? %>
-          <td><%= link_to 'Show', category %></td>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Mostrar Articulos', category %></td>
+          <% if current_user.role != 'Usuario' && current_user.role != 'Editor' %>
+            <td><%= link_to 'Editar', edit_category_path(category) %></td>
+            <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
@@ -28,4 +30,7 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<% if current_user.role != 'Usuario' && current_user.role != 'Editor' %>
+  <%= link_to 'New Category', new_category_path %>
+<% end %>
+

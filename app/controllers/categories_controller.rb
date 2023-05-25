@@ -12,11 +12,21 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    if current_user.role == 'Usuario' || current_user.role == 'Editor'
+      redirect_to articles_path, alert: 'No tienes permisos para crear nuevas categorias.'
+    else
+      @category = Category.new
+    end
+
   end
 
   # GET /categories/1/edit
   def edit
+    if current_user.role == 'Usuario' || current_user.role == 'Editor'
+      redirect_to articles_path, alert: 'No tienes permisos para crear editar categorias.'
+    else
+
+    end
   end
 
   # POST /categories or /categories.json
@@ -36,25 +46,35 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
-        format.json { render :show, status: :ok, location: @category }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+    if current_user.role == 'Usuario' || current_user.role == 'Editor'
+      redirect_to articles_path, alert: 'No tienes permisos para editar categorias.'
+    else
+      respond_to do |format|
+        if @category.update(category_params)
+          format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
+          format.json { render :show, status: :ok, location: @category }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy
+    if current_user.role == 'Usuario' || current_user.role == 'Editor'
+      redirect_to articles_path, alert: 'No tienes permisos para eliminar categorias.'
+    else
+      @category.destroy
 
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private

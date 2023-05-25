@@ -13,14 +13,23 @@
 
     <% if user_signed_in? %>
 
-        <li class="nav-item">
-            <%= link_to "Nuevo Artículo", new_article_path, class: "nav-link" %>
-        </li>
+        <% if current_user.role != 'Usuario' %>
+        <!-- Opción de la navbar que deseas ocultar -->
+            <li class="nav-item">
+                <%= link_to "Nuevo Artículo", new_article_path, class: "nav-link" %>
+            </li>
+        <% end %>
+
+
         <li class="nav-item">
             <%= link_to "Perfil", perfil_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
             <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "nav-link"%>
+        </li>
+
+        <li class="nav-item">
+            <p class="nav-link"><%= current_user.email%></p>
         </li>
 
     <% else %>
