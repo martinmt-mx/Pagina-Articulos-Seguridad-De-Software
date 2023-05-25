@@ -1,0 +1,9 @@
+development:
+  site_key: 6LeCxDsmAAAAAO0ktwHQOrMKOCwOQhxOLFdY48Se
+  secret_key: 6LeCxDsmAAAAAF7Krr_LDOnvFcB47A_OAjHnNP9S
+test:
+  site_key: 6LeCxDsmAAAAAO0ktwHQOrMKOCwOQhxOLFdY48Se
+  secret_key: 6LeCxDsmAAAAAF7Krr_LDOnvFcB47A_OAjHnNP9S
+production:
+  site_key: 6LeCxDsmAAAAAO0ktwHQOrMKOCwOQhxOLFdY48Se
+  secret_key: 6LeCxDsmAAAAAF7Krr_LDOnvFcB47A_OAjHnNP9S

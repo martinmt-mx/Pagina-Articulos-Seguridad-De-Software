@@ -23,6 +23,12 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
+    <div class="field">
+      <%= flash[:recaptcha_error] %>
+      <%= recaptcha_tags(site_key: ENV['6LeCxDsmAAAAAO0ktwHQOrMKOCwOQhxOLFdY48Se']) %>
+    </div>
+
+
     <div class="actions">
       <%= f.submit "Registrarse" %>
     </div>
