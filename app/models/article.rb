@@ -1,9 +1,9 @@
 class Article < ApplicationRecord
   has_rich_text :content
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :category_articles
   has_many :categories, through: :category_articles
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   attr_accessor :category_elements
 

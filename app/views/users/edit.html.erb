@@ -2,12 +2,22 @@
     <p class="fw-bold text-uppercase margin-top">Editar Usuario</p>
     <%= image_tag url_for(current_user.avatar), height: 100, width: 100 %>
     <%= form_with(model: current_user, local: true) do |form| %>
-    <div class="field">
-        <%= form.label :avatar %>
-        <%= form.file_field :avatar %>
-    </div>
-    <div class="field">
-        <%= form.submit 'Guardar', disable_with: "Guardaring...", class: "btn btn-primary" %>
-    </div>
+        <div class="field">
+            <%= form.label :name, "Nombre" %>
+            <%= form.text_field :name %>
+        </div>
+
+        <div class="field">
+            <%= form.label :avatar %>
+            <%= form.file_field :avatar %>
+        </div>
+
+        <div class="field">
+            <%= form.submit 'Guardar', disable_with: "Guardando...", class: "btn btn-primary" %>
+        </div>
     <% end %>
+    <div class="field">
+        <%= button_to "Eliminar cuenta", user_path(current_user), method: :delete, data: { confirm: "¿Estás seguro de eliminar tu cuenta?" }, class: "btn btn-primary" %>
+    </div>
+
 </div>

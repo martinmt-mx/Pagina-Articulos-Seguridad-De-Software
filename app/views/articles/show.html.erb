@@ -1,7 +1,7 @@
 <div class="large-container center-block">
     <h1><%= @article.title %></h1>
     <div>
-        <p>Escrito por: <strong><%= @article.user.email %></strong> </p>
+        <p>Escrito por: <strong><%= @article.user.name %></strong> </p>
     </div>
     <div>
         <%= @article.content %>
@@ -37,9 +37,16 @@
         <h2>Comentarios</h2>
         <% @article.comments.each do |comment| %>
         <div>
-            <p>Correo del usuario: <%= comment.user.email %></p>
-            <p>Fecha: <%= comment.created_at %></p>
+            <% if comment.user.avatar.present? %>
+                <%= image_tag comment.user.avatar.variant(resize: '50x50^', crop: '50x50+0+0'), width: 50, height: 50 %>
+            <% end %>
+            <p>Publicado por: <%= comment.user_name %></p>
+            <p>Publicado: <%= comment.created_at.strftime("%d/%m/%Y") %></p>
             <p><%= comment.text %></p>
+
+            <% if current_user == comment.user %>
+                <%= button_to "Eliminar comentario", article_comment_path(@article, comment), method: :delete, data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+            <% end %>
         </div>
         <% end %>
     </div>

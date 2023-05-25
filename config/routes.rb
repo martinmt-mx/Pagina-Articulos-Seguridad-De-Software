@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
+  #devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'home/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/bienvenida", to: "home#index"
 
   resources :users, only: [:update]
   get "perfil", to: "users#edit"
+  delete '/users/:id', to: 'users#destroy', as: :delete_user
 
   root to: "home#index"
 

@@ -22,12 +22,16 @@ class UsersController < ApplicationController
       # current_user = current_user.find(params[:id])
     end
 
-    # def destroy
-    #   current_user = current_user.find(params[:id])
-    # end
+    def destroy
+      user = User.find(params[:id])
+      user.articles.update_all(user_id: 16)
+      user.destroy
+      reset_session # Opcional: Cierra la sesión del usuario eliminado
+      redirect_to root_path, notice: "Tu cuenta ha sido eliminada correctamente."
+    end
 
     def user_params
-      params.require(:user).permit(:avatar)
+      params.require(:user).permit(:name, :avatar)
     end
 
 end
