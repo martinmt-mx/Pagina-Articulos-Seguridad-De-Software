@@ -6,8 +6,18 @@ class UsersController < ApplicationController
     # end
 
     # def show
-    #   @current_user = current_user.find(params[:id])
+    #   user = User.find_by(id: params[:id])
+
+    #   if user.nil?
+    #     # Redirige o maneja el caso en el que el usuario no exista
+    #     redirect_to root_path, notice: 'El usuario no existe'
+    #   end
     # end
+
+    def my_comments
+      @user = current_user
+      @comments = @user.comments
+    end
 
     # def create
     #   @current_user = current_user.new(params[:current_user])

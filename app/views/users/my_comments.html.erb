@@ -1,0 +1,11 @@
+<h1>Mis Comentarios</h1>
+
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <p><strong>Artículo:</strong> <%= link_to comment.article.title, article_path(comment.article) %></p>
+    <p><strong>Comentario:</strong> <%= comment.text %></p>
+    <p><strong>Fecha:</strong> <%= comment.created_at %></p>
+    <!-- Agrega más información si lo deseas -->
+  </div>
+  <hr>
+<% end %>

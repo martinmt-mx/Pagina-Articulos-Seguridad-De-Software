@@ -7,9 +7,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/bienvenida", to: "home#index"
 
+  resources :users do
+    get 'my_comments', on: :member
+  end
+  
   resources :users, only: [:update]
   get "perfil", to: "users#edit"
   delete '/users/:id', to: 'users#destroy', as: :delete_user
+
+  # get '/users/:id', to: 'users#show', as: 'user_profile'
 
   root to: "home#index"
 

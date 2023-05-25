@@ -20,4 +20,6 @@
         <%= button_to "Eliminar cuenta", user_path(current_user), method: :delete, data: { confirm: "¿Estás seguro de eliminar tu cuenta?" }, class: "btn btn-primary" %>
     </div>
 
+    <%= link_to 'Mis Comentarios', my_comments_user_path(current_user) %>
+
 </div>

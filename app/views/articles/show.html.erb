@@ -40,7 +40,7 @@
             <% if comment.user.avatar.present? %>
                 <%= image_tag comment.user.avatar.variant(resize: '50x50^', crop: '50x50+0+0'), width: 50, height: 50 %>
             <% end %>
-            <p>Publicado por: <%= comment.user_name %></p>
+            <p>Publicado por: <%= comment.user.email %></p>
             <p>Publicado: <%= comment.created_at.strftime("%d/%m/%Y") %></p>
             <p><%= comment.text %></p>
 
