@@ -1,0 +1,11 @@
+<h1>Mis Artículos</h1>
+
+<% @articles.each do |article| %>
+  <div class="article">
+    <h2><%= link_to article.title, article_path(article) %></h2>
+    <p><strong>Contenido:</strong> <%= article.content %></p>
+    <p><strong>Fecha:</strong> <%= article.created_at %></p>
+    <!-- Agrega más información si lo deseas -->
+  </div>
+  <hr>
+<% end %>

@@ -19,6 +19,12 @@ class UsersController < ApplicationController
       @comments = @user.comments
     end
 
+    def my_articles
+      @user = current_user
+      @articles = @user.articles
+    end
+
+
     # def create
     #   @current_user = current_user.new(params[:current_user])
     # end

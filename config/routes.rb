@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   resources :users do
     get 'my_comments', on: :member
+    get 'my_articles', on: :member
   end
-  
+
   resources :users, only: [:update]
   get "perfil", to: "users#edit"
   delete '/users/:id', to: 'users#destroy', as: :delete_user
