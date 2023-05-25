@@ -1,43 +1,47 @@
-<nav class="nav bg-light padding">
-    <li class="nav-item">
+<nav class="nav bg-light padding navbar">
+  <div class="navbar-left">
+    <ul class="nav">
+      <li class="nav-item">
         <%= link_to "Inicio", root_path, class: "nav-link" %>
-    </li>
+      </li>
 
-    <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "Artículos", articles_path, class: "nav-link" %>
-    </li>
+      </li>
 
-    <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "Categorias", categories_path, class: "nav-link" %>
-    </li>
+      </li>
 
-    <% if user_signed_in? %>
-
-        <% if current_user.role != 'Usuario' %>
+      <% if user_signed_in? && current_user.role != 'Usuario' %>
         <!-- Opción de la navbar que deseas ocultar -->
-            <li class="nav-item">
-                <%= link_to "Nuevo Artículo", new_article_path, class: "nav-link" %>
-            </li>
-        <% end %>
+        <li class="nav-item">
+          <%= link_to "Nuevo Artículo", new_article_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-
+  <div class="navbar-right">
+    <ul class="nav">
+      <% if user_signed_in? %>
         <li class="nav-item">
-            <%= link_to "Perfil", perfil_path, class: "nav-link" %>
+          <%= link_to "Perfil", perfil_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "nav-link"%>
-        </li>
-
-        <li class="nav-item">
-            <p class="nav-link"><%= current_user.email%></p>
-        </li>
-
-    <% else %>
-        <li class="nav-item">
-            <%= link_to "Iniciar sesión", new_user_session_path, class: "nav-link"%>
+          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "nav-link"%>
         </li>
         <li class="nav-item">
-            <%= link_to "Registro", new_user_registration_path, class: "nav-link"%>
+          <p class="nav-link"><%= current_user.email%></p>
         </li>
-    <% end %>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Iniciar sesión", new_user_session_path, class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Registro", new_user_registration_path, class: "nav-link"%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>

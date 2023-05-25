@@ -1,3 +1,22 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.article-block {
+    max-width: 300px;
+    max-height: 600px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    width: 50%;
+}

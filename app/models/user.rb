@@ -8,7 +8,7 @@ class User < ApplicationRecord
     user: 'Usuario'
   }
 
-  before_create :set_default_avatar, :set_default_role
+  before_create :set_default_avatar, :set_default_role, :set_default_name
 
 
   devise :database_authenticatable, :registerable,
@@ -59,5 +59,9 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role = "Usuario"
+  end
+
+  def set_default_name
+    self.name = "NuevoUsuario #{Time.zone.now.strftime('%Y%m%d%H%M%S')}"
   end
 end

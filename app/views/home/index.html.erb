@@ -1,8 +1,21 @@
-<% if user_signed_in? %>
-        <h1>Hola <%= current_user.email %></h1>
-    <% else %>
-        <h1>Hola visitante</h1>
-<% end %>
+<div class="container">
+    <div class="row">
+    <% @articles.each do |article| %>
+        <div class="col-md-6">
+        <div class="article-block">
+            <%= link_to article_path(article) do %>
+            <% if article.content.present? %>
+                <% first_image = article.content.body.attachments.find { |attachment| attachment.content_type.starts_with?('image/') } %>
+                <% if first_image %>
+                <%= image_tag first_image.variant(resize: "200x200") %>
+                <% end %>
+            <% end %>
+            <h4><%= article.title %></h4>
+            <!-- Otros detalles del artículo -->
+            <% end %>
+        </div>
+        </div>
+    <% end %>
+    </div>
+</div>
 
-
-<%= link_to 'inicio', root_path %>

@@ -1,3 +1,37 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.profile_sec {
+    max-width: 100%;
+    max-height: 600px;
+    text-align:center;
+    border-radius: 10px;
+    background-color: #fbfcfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    margin: 10px;
+}
+
+.my_articles_block{
+    max-width: 100%;
+    max-height: 600px;
+    text-align:left;
+    border-radius: 10px;
+    background-color: #fbfcfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    margin: 10px;
+}
+
+.my_articles_con{
+    text-align:center;
+    padding: 30px;
+    margin: 30px;
+}
+
+.my_comments_con{
+    text-align:center;
+    padding: 30px;
+    margin: 30px;
+}

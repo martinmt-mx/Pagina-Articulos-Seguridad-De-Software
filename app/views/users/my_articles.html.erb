@@ -1,11 +1,15 @@
-<h1>Mis Artículos</h1>
+<div class="my_articles_con">
+  <h1>Mis Artículos</h1>
 
-<% @articles.each do |article| %>
-  <div class="article">
-    <h2><%= link_to article.title, article_path(article) %></h2>
-    <p><strong>Contenido:</strong> <%= article.content %></p>
-    <p><strong>Fecha:</strong> <%= article.created_at %></p>
-    <!-- Agrega más información si lo deseas -->
-  </div>
-  <hr>
-<% end %>
+  <% @articles.each do |article| %>
+    <div class="article">
+      <div class="my_articles_block">
+        <h2><%= link_to article.title, article_path(article) %></h2>
+
+        <p><strong>Fecha:</strong> <%= article.created_at %></p>
+        <!-- Agrega más información si lo deseas -->
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

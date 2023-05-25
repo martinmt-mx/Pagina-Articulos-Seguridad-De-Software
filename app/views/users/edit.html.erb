@@ -19,10 +19,13 @@
     <div class="field">
         <%= button_to "Eliminar cuenta", user_path(current_user), method: :delete, data: { confirm: "¿Estás seguro de eliminar tu cuenta?" }, class: "btn btn-primary" %>
     </div>
-
-    <%= link_to 'Mis Comentarios', my_comments_user_path(current_user) %>
-    <% if current_user.role != 'Usuario' %>
-        <%= link_to 'Mis Artículos', my_articles_user_path(current_user) %>
-    <% end %>
+    <div class="profile_sec">
+        <%= link_to 'Mis Comentarios', my_comments_user_path(current_user) %>
+    </div>
+    <div class="profile_sec">
+        <% if current_user.role != 'Usuario' %>
+            <%= link_to 'Mis Artículos', my_articles_user_path(current_user) %>
+        <% end %>
+    </div>
 
 </div>
