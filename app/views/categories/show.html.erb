@@ -1,5 +1,7 @@
 <div class="large-container center-block">
-    <h1>Articulos publicados por <%= @category.title %></h1>
+    <div class="categories-block">
+        <h1>Articulos publicados por <%= @category.title %></h1>
 
-    <%= render @category.articles %>
+        <%= render @category.articles %>
+    </div>
 </div>

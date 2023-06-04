@@ -1,10 +1,8 @@
 <div class="large-container center-block">
     <h1><%= @article.title %></h1>
+
     <div>
         <p>Escrito por: <strong><%= @article.user.name %></strong> </p>
-    </div>
-    <div>
-        <%= @article.content %>
     </div>
 
     <div class="margin-top">
@@ -17,16 +15,18 @@
         <% end %>
 
     </div>
-    <% if current_user.role != 'Usuario' %>
+
+    <div>
+        <%= @article.content %>
+    </div>
+
+
+    <% if current_user==nil || current_user.role != 'Usuario'%>
         <div>
             <%= link_to "EDITAR", edit_article_path, class: "link" %>
             <%= link_to "ELIMINAR ARTICULO", @article, method: :delete %>
         </div>
     <% end %>
-
-
-
-
 
     <div>
         <h2>Agregar Comentario</h2>
@@ -45,12 +45,14 @@
             <% if comment.user.avatar.present? %>
                 <%= image_tag comment.user.avatar.variant(resize: '50x50^', crop: '50x50+0+0'), width: 50, height: 50 %>
             <% end %>
-            <p>Publicado por: <%= comment.user.email %></p>
+            <p>Publicado por: <%= comment.user.name %></p>
 
             <div class= "comment_content"><p><%= comment.text %></p></div>
             <p>Publicado: <%= comment.created_at.strftime("%d/%m/%Y") %></p>
-            <% if current_user == comment.user || current_user.role == 'Admin'%>
-                <%= button_to "Eliminar comentario", article_comment_path(@article, comment), method: :delete, data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+            <% if current_user.present? %>
+                <% if current_user == comment.user || current_user.role == 'Admin'%>
+                    <%= button_to "Eliminar comentario", article_comment_path(@article, comment), method: :delete, data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+                <% end %>
             <% end %>
         </div>
         <% end %>

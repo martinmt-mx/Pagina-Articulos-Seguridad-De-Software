@@ -37,5 +37,5 @@ class Users::SessionsController < Devise::SessionsController
       flash.discard(:recaptcha_error) # We need to discard flash to avoid showing it on the next page reload
       render :new
     end
-  end 
+  end
 end

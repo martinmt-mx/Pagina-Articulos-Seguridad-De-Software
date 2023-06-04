@@ -1,24 +1,22 @@
 class ArticlesController < ApplicationController
-  before_action :find_article, only: [:edit, :update, :show, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :create, :destroy]
+  before_action :find_article, only: %i[edit update show destroy]
+  before_action :authenticate_user!, only: %i[new edit update create destroy]
   def index
     @articles = Article.all
   end
 
-  def show
-
-  end
+  def show; end
 
   def edit
     unless @article.user == current_user || current_user.admin?
-      redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
+      redirect_to articles_path, alert: 'No tienes permiso para editar este artículo.'
     end
     @categories = Category.all
   end
 
   def update
     unless @article.user == current_user || current_user.admin?
-      redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
+      redirect_to articles_path, alert: 'No tienes permiso para editar este artículo.'
       return
     end
     @article.update(article_params)
@@ -43,7 +41,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     unless @article.user == current_user || current_user.admin?
-      redirect_to articles_path, alert: "No tienes permiso para editar este artículo."
+      redirect_to articles_path, alert: 'No tienes permiso para editar este artículo.'
       return
     end
     @article.remove_category_association
@@ -62,6 +60,4 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :content, category_elements: [])
   end
-
-
 end

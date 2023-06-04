@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   before_create :set_default_avatar, :set_default_role, :set_default_name
 
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -18,14 +17,11 @@ class User < ApplicationRecord
   has_many :comments
   has_one_attached :avatar
 
-
   after_create :resize_avatar
 
   after_create :resize_avatar
 
   before_destroy :delete_comments, :update_article_author
-
-
 
   def resize_avatar
     return unless avatar.attached? # Verifica si hay una imagen de avatar adjunta
@@ -37,10 +33,10 @@ class User < ApplicationRecord
   end
 
   def set_default_avatar
-    unless avatar.attached? # Verificar si no se ha adjuntado ninguna imagen de perfil
-      default_image_path = Rails.root.join('public', 'default_avatar.png') # Ruta de la imagen por defecto
-      self.avatar.attach(io: File.open(default_image_path), filename: 'default_avatar.png', content_type: 'image/png')
-    end
+    return if avatar.attached? # Verificar si no se ha adjuntado ninguna imagen de perfil
+
+    default_image_path = Rails.root.join('public', 'default_avatar.png') # Ruta de la imagen por defecto
+    avatar.attach(io: File.open(default_image_path), filename: 'default_avatar.png', content_type: 'image/png')
   end
 
   def admin?
@@ -54,11 +50,11 @@ class User < ApplicationRecord
   end
 
   def update_article_author
-    articles.update_all(user_id: "elpepe")
+    articles.update_all(user_id: 'elpepe')
   end
 
   def set_default_role
-    self.role = "Usuario"
+    self.role = 'Usuario'
   end
 
   def set_default_name

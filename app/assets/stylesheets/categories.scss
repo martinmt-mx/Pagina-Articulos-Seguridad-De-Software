@@ -1,3 +1,20 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.categories-block {
+    justify-content: center;
+}
+.categories-div{
+    display: flex;
+    justify-content: center;
+}
+.category_table{
+    max-width: 100%;
+    max-height: 600px;
+    text-align:left;
+    border-radius: 10px;
+    background-color: #fbfcfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    margin: 10px;
+}

@@ -1,7 +1,7 @@
-require "test_helper"
+require_relative '../test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get edit" do
+  test 'should get edit' do
     get users_edit_url
     assert_response :success
   end
